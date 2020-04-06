@@ -45,8 +45,9 @@ function locationRequestResponse(request, response) {
         `https://eu1.locationiq.com/v1/search.php?key=${process.env.LOCATION_IQ_TOKEN}&q=${requestCity}&format=json`
     )
         .then((apiData) => {
+            console.log(apiData.body)
             const geoData = apiData.body;
-            locationEnteries = new Location(requestCity, geoData);
+            const locationEnteries = new Location(requestCity, geoData);
             response.status(200).json(locationEnteries);
         })
         .catch((err) => {
